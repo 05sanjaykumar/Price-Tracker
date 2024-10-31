@@ -1,4 +1,3 @@
-// src/Signup.js
 import React, { useState } from 'react';
 import axios from '../services/authServices';
 import { useNavigate } from 'react-router-dom';
@@ -16,8 +15,8 @@ const Signup = () => {
         e.preventDefault();
         try {
             const response = await axios.post('/signin', formData);
-            localStorage.setItem('token', response.data.token);  // Store token for session
-            navigate('/dashboard');  // Redirect to Dashboard on success
+            localStorage.setItem('token', response.data.token); 
+            navigate('/dashboard'); 
         } catch (err) {
             setError(err.response?.data?.message || 'Signup failed');
         }

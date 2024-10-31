@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
+import axios from '../services/authServices';
 
 const Login = () => {
   const [formData, setFormData] = useState({email:'',password:''})
-  const [error, setError] = useState()
+  const [error, setError] = useState('')
   const navigate = useNavigate()
 
   const handleChange = (e)=>{
@@ -16,7 +17,8 @@ const Login = () => {
       const response = await axios.post('/login',formData)
       localStorage.setItem('token',response.data.token)
       navigate('/dashboard')
-    } catch (error) {
+    } catch (err) {
+
       setError(err.response?.data?.message || 'Login failed');
     }
   }
