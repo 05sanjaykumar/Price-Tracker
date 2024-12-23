@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-});
+    cartData:{
+        type:Object,
+        default:[],
+    }
+},{minimize:false});
 
 module.exports = mongoose.model('User', userSchema);

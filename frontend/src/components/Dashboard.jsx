@@ -62,33 +62,45 @@ const [savedStates, setSavedStates] = useState(
     }
     fetchItemList();
   }, []);
+  
   const fetchItemList=async()=>{
     const response=await axios.get(url+"/item/list");
     console.log("fetched Items")
     setTrackedItems(response.data.data);
   };
    // Empty dependency array to ensure it runs once when the component loads
-  const toggleSave = async (item,index) => {
+  const toggleSave = async (itemId,index) => {
     setSavedStates((prevStates) => {
       const newStates = [...prevStates];
       newStates[index] = !newStates[index];// Toggle the state for the specific product
     
       return newStates;
     });
-
-    if(token){
-      await axios.post(url+"/item/store",{title:item.title?.toString() || "Untitled",price: item.price?.toString() || "0",});
-    }
+      if (!trackedItems[itemId]) {
+        setTrackedItems((prev) => ({ ...prev, [itemId]: 1 }));
+      } else {
+        setTrackedItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
+      }
+      if(token){
+        await axios.post(url+"/item/store",{id:itemId},{headers:{token}});
+      }
+      
     await fetchItemList();
    
     console.log(trackedItems);
-  };
-  const removeItem = async (itemId) => {
-    setTrackedItems((prev) => prev.filter((item) => item.id !== itemId));
-     if(token){
-      console.log("remove Triggred", itemId)
-      await axios.post("http://localhost:3000/item/remove",{id:itemId});
-     }
+    };
+  
+  const removeItem = async (itemId,index) => {
+    setSavedStates((prevStates) => {
+      const newStates = [...prevStates];
+      newStates[index] = !newStates[index];// Toggle the state for the specific product
+    
+      return newStates;
+    });
+    setTrackedItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
+    // if(token){
+    //   await axios.post(url+"/item/remove",{id:itemId},{headers:{token}});
+    // }
     await fetchItemList();
     console.log(trackedItems);
   };
@@ -101,16 +113,17 @@ const [savedStates, setSavedStates] = useState(
             <h2 className="text-lg font-semibold text-gray-800">Price History</h2>
           </SidebarHeader>
           <SidebarContent>
-            { trackedItems.map((item, index) => (
+            { trackedItems.map((item, index) => {
+              if (trackedItems[item._id] > 0) {
               <div key={index} className="p-4 border-b border-gray-200">
                 <h3 className="font-medium text-gray-800">{item.title}</h3>
-                <p className="text-sm text-gray-600">Current: ${item.price}</p>
+                <p className="text-sm text-gray-600">Current: {item.price}</p>
                 <div className="mt-2">
                   <LineChart className="h-16 w-full text-gray-400" />
                 </div>
-                <button className='px-2 py-2 text-sm text-white rounded bg-black hover:bg-slate-700' onClick={()=>removeItem(item._id)}>Remove Item</button>
+                <button className='px-2 py-2 text-sm text-white rounded bg-black hover:bg-slate-700' onClick={()=>removeItem(item._id,index)}>Remove Item</button>
               </div>
-            ))}
+}})}
           </SidebarContent>
         </Sidebar>
         <main className="flex-1 bg-gray-50">
@@ -169,7 +182,7 @@ const [savedStates, setSavedStates] = useState(
               className={`px-4 py-2 text-sm text-white rounded ${
                 savedStates[index] ? "bg-gray-700 " : "bg-black hover:bg-slate-700"
               }`}
-              onClick={() => toggleSave(item,index)}
+              onClick={() => toggleSave(item._id,index)}
             >
               {savedStates[index] ? "Saved!" : "Save Product"}
             </button>
