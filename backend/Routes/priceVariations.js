@@ -22,11 +22,11 @@ router.get('/', async (req, res) => {
         await page.goto(bingUrl, { waitUntil: 'networkidle2', timeout: 0 });
 
         await new Promise(resolve => setTimeout(resolve, 3000));
-        await page.screenshot({ path: 'bing_shopping.png', fullPage: true });
+        // await page.screenshot({ path: 'bing_shopping.png', fullPage: true });
 
         await page.waitForSelector('ol.br-itemsCnt');
-        const html = await page.content();
-        require('fs').writeFileSync('bing-debug.html', html);
+        // const html = await page.content();
+        // require('fs').writeFileSync('bing-debug.html', html);
         const bingItems = await page.evaluate(() => {
         const results = [];
         const cards = document.querySelectorAll('li.br-item');
