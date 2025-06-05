@@ -1,8 +1,12 @@
+import { Routes, Route } from 'react-router-dom';
+import EasyBuyLanding  from './pages/LandingPage'
 function App() {
 
   return (
     <>
-      <h1>Hello world</h1>
+      <Routes>
+          <Route path="/" element={<EasyBuyLanding />} />
+      </Routes>
     </>
   )
 }

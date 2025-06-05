@@ -15,7 +15,7 @@
 
 ### 📌 **Overview:**
 
-**Price Pulse** is a full-stack AI-powered product aggregator and smart deal recommender. It tracks, analyzes, and summarizes e-commerce product listings from multiple platforms. It goes beyond price tracking — offering intelligent insights, product comparisons, and potential purchase recommendations through AI summarization.
+**Easy Buy** is a full-stack AI-powered product aggregator and smart deal recommender. It tracks, analyzes, and summarizes e-commerce product listings from multiple platforms. It goes beyond price tracking — offering intelligent insights, product comparisons, and potential purchase recommendations through AI summarization.
 
 It's designed as a **future-ready tool** that can evolve into a full-blown SaaS product, freelance offering, or B2B plugin.
 
