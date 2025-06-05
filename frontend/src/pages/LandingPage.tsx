@@ -69,7 +69,7 @@ const EasyBuyLanding: React.FC = () => {
               <a href="#features" className="hover:text-purple-400 transition-colors">Features</a>
               <a href="#how-it-works" className="hover:text-purple-400 transition-colors">How It Works</a>
               <a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 rounded-full hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105">
+              <button  className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 rounded-full hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105">
                 Get Started
               </button>
             </div>
