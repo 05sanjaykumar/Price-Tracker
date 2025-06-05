@@ -10,33 +10,74 @@
 - [Contributing](#contributing)
 - [License](#license)
 
-## Project Overview
+---
 
-The **E-commerce Price Tracker** is a web application that allows users to track and compare product prices across multiple e-commerce platforms such as Amazon. The application provides a simple and user-friendly interface for users to search for products, save their favorites, and receive updates on price changes.
 
-## Features
+### 📌 **Overview:**
 
-- **User Authentication**: Secure sign-up and login using JsonWebTokens.
-- **Product Search**: Search for products from popular e-commerce websites.
-- **Web Scraping**: Automatically fetch product details, including prices and images.
-- **User Dashboard**: A personalized dashboard for each user to manage their saved products.
-- **Add/Delete Products**: Easily add products to your watchlist and remove them as needed.
-- **Price Tracking**: Keep track of price changes over time.
+**Easy Buy** is a full-stack AI-powered product aggregator and smart deal recommender. It tracks, analyzes, and summarizes e-commerce product listings from multiple platforms. It goes beyond price tracking — offering intelligent insights, product comparisons, and potential purchase recommendations through AI summarization.
 
-## Technologies Used
+It's designed as a **future-ready tool** that can evolve into a full-blown SaaS product, freelance offering, or B2B plugin.
 
-- **Frontend**:
-  - React.js
-  - Tailwind CSS and Material UI
-  - Firebase SDK
-  - Axios
+---
 
-- **Backend**:
-  - Node.js
-  - Express.js
-  - MongoDB (via Mongoose)
-  - Json Web Tokens
-  - Puppeteer (for web scraping)
+## 🚀 **Key Features:**
+
+### 🛍️ Core Functionality:
+
+* **Product Aggregation** from multiple e-commerce platforms
+* **Live Price Tracking** (with price variation tracking if needed)
+* **AI-Powered Product Summarization** (e.g., summarizing 10+ similar listings into a top pick)
+* **Smart Sorting & Filtering** based on price, seller, ratings (future-ready)
+* **Product Detail Pages** with store, price, and direct links
+
+### ⚙️ Developer / SaaS Features:
+
+* Modular API structure for scalability
+* User dashboard with tracked items
+* Well-structured codebase: backend, frontend, and utility layers
+* Can be extended to include web scraping, notifications, and wishlist alerts
+
+---
+
+## 🧠 **AI Integrations (Planned or Existing):**
+
+* Summarizing multiple e-commerce listings to suggest “Best Option”
+* Title clarity cleanup, smart tagging, or spec extraction
+* Could be extended to: **price prediction**, **deal timing alerts**, or **AI chat assistant** for product search
+
+---
+
+## 🧰 **Tech Stack**
+
+### 🔧 Backend:
+
+* **Node.js** + **Express.js**
+* **MongoDB** (via Mongoose)
+* RESTful API Architecture
+* JWT Authentication
+* Modular routes and controllers
+
+### 🌐 Frontend:
+
+* **React.js** + **Vite**
+* **Tailwind CSS** for clean UI
+* Responsive, reusable UI components
+* Dashboard, login, home, item details pages
+
+### ☁️ DevOps / Deployment:
+
+* Cloud Deployment (e.g., Render, Railway, or AWS)
+* Git-based CI/CD setup
+* Vercel / Netlify for frontend (optionally)
+
+### 🧠 AI Tools:
+
+* OpenAI or local LLMs (for summarization / recommendation)
+* Utility layer to preprocess listing data before summarization
+
+---
+
 
 ## Setup Instructions
 
