@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 import { Search, TrendingUp, Brain, Zap, ArrowRight, Menu, X, Target, Rocket } from 'lucide-react';
 import './LandingPage.css'
+import { useNavigate } from "react-router-dom";
+
 
 const EasyBuyLanding: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState<boolean>(false);
   const [scrollY, setScrollY] = useState<number>(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrollY(window.scrollY);
@@ -69,7 +72,9 @@ const EasyBuyLanding: React.FC = () => {
               <a href="#features" className="hover:text-purple-400 transition-colors">Features</a>
               <a href="#how-it-works" className="hover:text-purple-400 transition-colors">How It Works</a>
               <a href="#pricing" className="hover:text-purple-400 transition-colors">Pricing</a>
-              <button  className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 rounded-full hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105">
+              <button  className="bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 rounded-full hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105"
+              onClick={() => navigate("/auth")}
+              >
                 Get Started
               </button>
             </div>
@@ -91,7 +96,9 @@ const EasyBuyLanding: React.FC = () => {
               <a href="#features" className="block hover:text-purple-400 transition-colors">Features</a>
               <a href="#how-it-works" className="block hover:text-purple-400 transition-colors">How It Works</a>
               <a href="#pricing" className="block hover:text-purple-400 transition-colors">Pricing</a>
-              <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 rounded-full hover:from-purple-700 hover:to-pink-700 transition-all">
+              <button className="w-full bg-gradient-to-r from-purple-600 to-pink-600 px-6 py-2 rounded-full hover:from-purple-700 hover:to-pink-700 transition-all"
+              onClick={() => navigate("/auth")}
+              >
                 Get Started
               </button>
             </div>
@@ -114,7 +121,9 @@ const EasyBuyLanding: React.FC = () => {
               Track prices across multiple platforms, get AI-powered product insights, and never miss a great deal again.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 rounded-full text-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 flex items-center space-x-2">
+              <button className="bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 rounded-full text-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 flex items-center space-x-2"
+              onClick={() => navigate("/auth")}
+              >
                 <span>Start Tracking Now</span>
                 <ArrowRight className="w-5 h-5" />
               </button>
@@ -265,7 +274,9 @@ const EasyBuyLanding: React.FC = () => {
               Join thousands of smart shoppers who never overpay for products again. Start your free trial today.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 rounded-full text-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 flex items-center space-x-2">
+              <button className="bg-gradient-to-r from-purple-600 to-pink-600 px-8 py-4 rounded-full text-lg font-semibold hover:from-purple-700 hover:to-pink-700 transition-all transform hover:scale-105 flex items-center space-x-2"
+              onClick={() => navigate("/auth")}
+              >
                 <span>Get Started Free</span>
                 <Rocket className="w-5 h-5" />
               </button>

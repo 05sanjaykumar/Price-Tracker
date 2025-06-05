@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Github, Chrome } from 'lucide-react';
+import { useNavigate } from "react-router-dom";
 
 const AuthPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -10,6 +11,9 @@ const AuthPage: React.FC = () => {
     password: '',
     confirmPassword: ''
   });
+
+const navigate = useNavigate();
+
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData(prev => ({
@@ -51,11 +55,15 @@ const AuthPage: React.FC = () => {
 
           {/* Social buttons */}
           <div className="grid grid-cols-2 gap-4 mb-6">
-            <button className="flex items-center justify-center py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 group">
+            <button className="flex items-center justify-center py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 group"
+            onClick={() => navigate("/soon")}
+            >
               <Github className="w-5 h-5 text-white group-hover:text-purple-300" />
               <span className="ml-2 text-white text-sm">Github</span>
             </button>
-            <button className="flex items-center justify-center py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 group">
+            <button className="flex items-center justify-center py-3 px-4 bg-white/10 hover:bg-white/20 rounded-xl border border-white/20 transition-all duration-300 hover:scale-105 group"
+            onClick={() => navigate("/soon")}
+            >
               <Chrome className="w-5 h-5 text-white group-hover:text-pink-300" />
               <span className="ml-2 text-white text-sm">Google</span>
             </button>
