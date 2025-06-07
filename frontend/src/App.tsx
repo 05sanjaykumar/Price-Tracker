@@ -2,6 +2,7 @@ import { Routes, Route } from 'react-router-dom';
 import EasyBuyLanding  from './pages/LandingPage'
 import AuthPage from './pages/AuthPage';
 import ComingSoon from './pages/ComingSoon';
+import DashBoard from './pages/DashBoard';
 function App() {
 
   return (
@@ -10,6 +11,7 @@ function App() {
           <Route path="/" element={<EasyBuyLanding />} />
           <Route path='/auth' element={<AuthPage/>} />
           <Route path='/soon' element={<ComingSoon/>} />
+          <Route path='/dashboard' element={<DashBoard/>} />
       </Routes>
     </>
   )
