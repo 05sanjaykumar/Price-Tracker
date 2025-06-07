@@ -3,6 +3,10 @@
 const User = require('../Schemas/UserSchema')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const { signupSchema, loginSchema } = require('../Validations/UserValidation');
+const dotenv = require('dotenv');
+dotenv.config({ path: '.env.local' });
+
 
 const generateToken = (userId)=>{
     return jwt.sign({userId},process.env.JWT_SECRET,{expiresIn:'1h'})

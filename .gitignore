@@ -1,4 +1,4 @@
 .env
 backend/node_modules
-__backend__/node_modules
 backend/.env.local
+.DS_Store

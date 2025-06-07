@@ -1,9 +1,14 @@
 const express = require('express')
 const cors = require('cors')
 const DB = require('./config/DB')
+const userRoutes = require('./Routes/AuthRoutes');
 DB()
 
 const app = express()
+app.use(express.json());
+
+
+app.use('/api', userRoutes);
 
 const PORT = 3000
 app.use(cors())
