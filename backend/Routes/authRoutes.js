@@ -1,8 +1,10 @@
-const express = require('express');
-const { signInUser, LogInUser } = require('../Controllers/authController.js');
-const router = express.Router();
+// backend/Routes/AuthRoutes.js
 
-router.post('/signup', signInUser);
+const express = require('express');
+const router = express.Router();
+const {SignInUser, LogInUser} = require('../Controllers/UserController')
+
+router.post('/signin',SignInUser);
 router.post('/login', LogInUser);
 
 

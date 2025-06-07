@@ -1,4 +1,4 @@
-// __backend__/Schemas/UserSchema.js
+// backend/Schemas/UserSchema.js
 
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;

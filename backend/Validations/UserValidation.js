@@ -1,4 +1,4 @@
-// __backend__/Validations/UserValidation.js
+// backend/Validations/UserValidation.js
 
 const {z} = require('zod')
 

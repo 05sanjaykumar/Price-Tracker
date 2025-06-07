@@ -1,10 +1,15 @@
-const User = require('../Models/User')
+//backend/Controllers/UserControllers.js
+
+const User = require('../Schemas/UserSchema')
 const bcrypt = require('bcryptjs');
-const generateToken = require('../utils/generateToken');
-const { signupSchema, loginSchema } = require('../Validations/authValidation');
+const jwt = require('jsonwebtoken');
+
+const generateToken = (userId)=>{
+    return jwt.sign({userId},process.env.JWT_SECRET,{expiresIn:'1h'})
+}
 
 
-const signInUser = async(req,res)=>{
+const SignInUser = async(req,res)=>{
     try {
         const {username, email,password} = signupSchema.parse(req.body)
         
@@ -45,4 +50,5 @@ const LogInUser = async(req,res)=>{
     }
 }
 
-module.exports = {signInUser,LogInUser}
+
+module.exports = {SignInUser,LogInUser}
