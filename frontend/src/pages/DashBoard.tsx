@@ -1,35 +1,90 @@
+// src/components/Dashboard.tsx
+"use client";
+
+import { useState } from 'react';
 import { Input } from "@/components/ui/input";
-import { motion } from "framer-motion";
-import { Search } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Search, Clock, Zap } from "lucide-react";
+import Sidebar from "../components/SideBar";
 
 const DashBoard = () => {
-  return (
-    <div className='min-h-screen bg-gray-900 min-w-screen flex text-white'>
-        <section className='w-1/6 bg-black p-2 border-r-gray-800 border-r'>
-            SideBar
-        </section>
-        <section className='p-2 flex items-center mt-2.5 w-full flex-col'>
-            <div className="searchBar">
-                <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5 }}
-                className="max-w-xl w-full relative"
-                >
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" />
-                <Input
-                    type="text"
-                    placeholder="Trace Items"
-                    className="pl-10 pr-4 py-2 w-3xl rounded-2xl bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-violet-500"
-                    />
-                </motion.div>
-            </div>
-            <div className="Content mt-2.5">
-                Content Goes Here
-            </div>
-        </section>
-    </div>
-  )
-}
+    const [searchTerm, setSearchTerm] = useState("");
+    const [isFocused, setIsFocused] = useState(false);
 
-export default DashBoard
+    const suggestions = [
+        { icon: Clock, text: "Sony WH-1000XM5 Price" },
+        { icon: Clock, text: "M2 Macbook Air Deals" },
+        { icon: Zap, text: "Trace a new product URL" },
+        { icon: Zap, text: "Compare two items" },
+    ];
+
+    return (
+        <div className='flex min-h-screen w-full bg-gray-900 font-sans'>
+            <Sidebar />
+
+            <main className='flex-1 p-4 md:p-8'>
+                <div className='mx-auto max-w-3xl mt-4'>
+                    {/* Search Bar and Suggestions Container */}
+                    <div
+                        className="relative"
+                        onFocus={() => setIsFocused(true)}
+                        onBlur={() => setIsFocused(false)}
+                    >
+                        <motion.div
+                            layout // Animates the change in shape/size
+                            transition={{ duration: 0.3, type: "spring", stiffness: 300, damping: 25 }}
+                            className="relative"
+                        >
+                            <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-gray-400" />
+                            <Input
+                                type="text"
+                                placeholder="Trace items, compare products, or ask AI..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="w-full rounded-full border-2 border-transparent bg-gray-800/80 py-6 pl-12 pr-4 text-base text-gray-50 backdrop-blur-sm transition-all duration-300 focus:border-violet-500 focus:bg-gray-800 focus:outline-none focus:ring-0"
+                            />
+                        </motion.div>
+
+                        {/* Suggestions Dropdown */}
+                        <AnimatePresence>
+                            {isFocused && (
+                                <motion.div
+                                    initial={{ opacity: 0, y: -10 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    exit={{ opacity: 0, y: -10 }}
+                                    transition={{ duration: 0.2, ease: "easeOut" }}
+                                    className="absolute mt-2 w-full overflow-hidden rounded-xl border border-gray-700 bg-gray-800/90 p-2 shadow-lg backdrop-blur-md"
+                                >
+                                    <ul>
+                                        {suggestions.map((suggestion, index) => (
+                                            <li
+                                                key={index}
+                                                className="flex cursor-pointer items-center gap-3 rounded-md p-3 text-sm text-gray-300 hover:bg-violet-500/20"
+                                                // This prevents the blur event from firing immediately
+                                                onMouseDown={(e) => e.preventDefault()}
+                                                onClick={() => {
+                                                    setSearchTerm(suggestion.text);
+                                                    setIsFocused(false);
+                                                }}
+                                            >
+                                                <suggestion.icon className="h-4 w-4 text-gray-400" />
+                                                <span>{suggestion.text}</span>
+                                            </li>
+                                        ))}
+                                    </ul>
+                                </motion.div>
+                            )}
+                        </AnimatePresence>
+                    </div>
+
+                    {/* Placeholder for content below the search bar */}
+                    <div className="Content mt-10 text-center text-gray-500">
+                        <p>Search results or tracked items will appear here.</p>
+                    </div>
+                </div>
+            </main>
+        </div>
+    );
+};
+
+export default DashBoard;
