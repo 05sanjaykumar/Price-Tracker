@@ -3,3 +3,4 @@ backend/node_modules
 backend/.env.local
 .DS_Store
 ai-summariser/venv
+ai-summariser/__pycache__
