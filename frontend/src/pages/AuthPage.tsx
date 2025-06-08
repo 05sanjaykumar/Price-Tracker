@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Eye, EyeOff, Mail, Lock, User, ArrowRight, Github, Chrome } from 'lucide-react';
 import { useNavigate } from "react-router-dom";
+import { signUpUser, loginUser } from '@/services/api';
 
 const AuthPage: React.FC = () => {
   const [isLogin, setIsLogin] = useState(true);
@@ -12,7 +13,15 @@ const AuthPage: React.FC = () => {
     confirmPassword: ''
   });
 
-const navigate = useNavigate();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const token = localStorage.getItem('token')
+    if(token){
+      navigate('/dashboard');
+    }
+  }, [])
+  
 
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,10 +31,43 @@ const navigate = useNavigate();
     }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log('Form submitted:', formData);
-  };
+  const handleSubmit = async (e: React.FormEvent) => {
+  e.preventDefault();
+
+  try {
+    if (isLogin) {
+      const response = await loginUser({
+        email: formData.email,
+        password: formData.password
+      });
+
+      // Store token (optional)
+      localStorage.setItem('token', response.data.token);
+
+      // Navigate to dashboard
+      navigate('/dashboard');
+    } else {
+      if (formData.password !== formData.confirmPassword) {
+        alert("Passwords do not match");
+        return;
+      }
+
+      const response = await signUpUser({
+        username: formData.name,
+        email: formData.email,
+        password: formData.password
+      });
+
+      localStorage.setItem('token', response.data.token);
+
+      navigate('/dashboard');
+    }
+  } catch (error: any) {
+    const message = error.response?.data?.message || error.message;
+    alert(`Authentication failed: ${message}`);
+  }
+};
+
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 flex items-center justify-center p-4">

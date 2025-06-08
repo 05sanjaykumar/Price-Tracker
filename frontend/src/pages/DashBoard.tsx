@@ -1,15 +1,25 @@
 // src/components/Dashboard.tsx
-"use client";
-
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Input } from "@/components/ui/input";
 import { motion, AnimatePresence } from "framer-motion";
 import { Search, Clock, Zap } from "lucide-react";
-import Sidebar from "../components/SideBar";
+import { useNavigate } from "react-router-dom";
+import Sidebar from "../components/Sidebar";
 
 const DashBoard = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [isFocused, setIsFocused] = useState(false);
+
+    const navigate = useNavigate()
+
+    useEffect(() => {
+        const token = localStorage.getItem('token')
+        if(!token){
+            alert('signin or login first')
+          navigate('/dashboard');
+        }
+      }, [])
+      
 
     const suggestions = [
         { icon: Clock, text: "Sony WH-1000XM5 Price" },
