@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { LoaderPinwheel, LayoutDashboard, History, Settings, UserCircle } from "lucide-react";
 import { clsx } from 'clsx'; // A utility for conditional class names
+import { useNavigate } from "react-router-dom";
 
 // You can expand this array to add more navigation links
 const navItems = [
@@ -10,7 +11,16 @@ const navItems = [
     { name: 'Settings', icon: Settings, href: '#', active: false },
 ];
 
+
+
 const Sidebar = () => {
+
+    const navigate = useNavigate()
+    const handleLogout = ()=>{
+        localStorage.setItem('token','');
+        navigate('/auth')
+    }
+
     return (
         <motion.aside
             initial={{ x: '-100%' }}
@@ -48,7 +58,7 @@ const Sidebar = () => {
             </nav>
 
             {/* Footer / User Profile */}
-            <div className='mt-auto border-t border-gray-800 p-4'>
+            <div className='mt-auto border-t border-gray-800 p-4' onClick={handleLogout}>
                  <div className='flex items-center gap-3 rounded-lg p-2 hover:bg-gray-800/60'>
                     <UserCircle className="h-9 w-9" />
                     <div className='flex flex-col'>

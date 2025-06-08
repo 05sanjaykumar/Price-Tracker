@@ -6,6 +6,7 @@ import { Search, Clock, Zap } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 
+
 const DashBoard = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [isFocused, setIsFocused] = useState(false);
@@ -16,7 +17,7 @@ const DashBoard = () => {
         const token = localStorage.getItem('token')
         if(!token){
             alert('signin or login first')
-          navigate('/dashboard');
+          navigate('/auth');
         }
       }, [])
       
