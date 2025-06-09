@@ -1,5 +1,5 @@
 from langchain_core.prompts import ChatPromptTemplate
-from langchain_ollama.llms import OllamaLLM
+from langchain_ollama import OllamaLLM
 from langchain_core.output_parsers import StrOutputParser
 import requests
 
@@ -23,7 +23,7 @@ def generate_summary(user_instruction, products):
     prompt = ChatPromptTemplate.from_template(template)
 
     # Initialize Ollama LLM (local model like Mistral)
-    llm = ollama(model="mistral")
+    llm = OllamaLLM(model="mistral")
 
     # Compose the chain using the pipe operator: prompt -> llm -> output parser
     chain = prompt | llm | StrOutputParser()
