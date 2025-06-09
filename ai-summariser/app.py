@@ -1,11 +1,10 @@
 from flask import Flask, request, jsonify
-from transformers import pipeline
+from ai_utils import fetch_product_data, generate_summary
 
 app = Flask(__name__)
-summarizer = pipeline("text2text-generation", model="google/flan-t5-small")
 
 
-@app.route("/summarize", methods=["GET"])
+@app.route("/askAI", methods=["POST"])
 def summariser():
     return jsonify(message="Hello, World!")
 
