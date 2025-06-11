@@ -1,7 +1,7 @@
-from langchain_core.prompts import ChatPromptTemplate
-from langchain_ollama import OllamaLLM
-from langchain_core.output_parsers import StrOutputParser
-import requests
+from langchain_core.prompts import ChatPromptTemplate # type: ignore
+from langchain_ollama import OllamaLLM # type: ignore
+from langchain_core.output_parsers import StrOutputParser # type: ignore
+import requests # type: ignore
 
 def fetch_product_data(query):
     url = f"http://localhost:3000/getPrice?name={query}"

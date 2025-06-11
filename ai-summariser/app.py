@@ -1,6 +1,6 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify # type: ignore
 from ai_utils import fetch_product_data, generate_summary
-from flask_cors import CORS
+from flask_cors import CORS # type: ignore
 
 
 app = Flask(__name__)
