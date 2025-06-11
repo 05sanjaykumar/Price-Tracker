@@ -1,0 +1,50 @@
+services:
+  mongo:
+    image: mongo
+    container_name: mongo
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+  backend:
+    build: ./backend
+    container_name: backend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - mongo
+    environment:
+      - MONGO_URI=mongodb://mongo:27017/price-tracker
+
+  ai-summariser:
+    build: ./ai-summariser
+    container_name: ai-summariser
+    ports:
+      - "5000:5000"
+    depends_on:
+      - ollama
+
+  ollama:
+    build: ./ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama-data:/root/.ollama
+
+
+  frontend:
+    build: ./frontend
+    container_name: frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+      - ai-summariser
+    environment:
+      - VITE_API_URL=http://localhost:3000
+      - VITE_AI_URL=http://localhost:5000
+
+volumes:
+  mongo-data:
+  ollama-data:
