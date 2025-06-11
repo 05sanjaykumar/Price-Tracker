@@ -12,4 +12,4 @@ COPY . .
 EXPOSE 3000
 
 # Run the backend server
-CMD ["node", "server.js"]
+CMD ["node", "Server.js"]

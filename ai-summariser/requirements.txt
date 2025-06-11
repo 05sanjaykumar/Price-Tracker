@@ -3,3 +3,4 @@ requests
 langchain
 ollama
 langchain-ollama
+flask_cors
