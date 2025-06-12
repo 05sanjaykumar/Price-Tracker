@@ -51,7 +51,6 @@ GROQ_API_BASE=https://api.groq.com/openai/v1
 MODEL_NAME=meta-llama/llama-4-scout-17b-16e-instruct
 ```
 
-> You can optionally remove Ollama support by disabling that service in `docker-compose.yml`.
 
 ### 3. Run with Docker
 
@@ -126,7 +125,7 @@ The system will:
 
 ---
 
-## 📸 Demo Preview (Optional)
+## 📸 Demo Preview 
 
 <img width="1435" alt="Screenshot 2025-06-12 at 9 17 30 PM" src="https://github.com/user-attachments/assets/34685183-002b-4bf0-9fad-eca5516b458d" />
 
