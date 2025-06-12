@@ -2,6 +2,9 @@ from langchain_core.prompts import ChatPromptTemplate # type: ignore
 from langchain_ollama import OllamaLLM # type: ignore
 from langchain_core.output_parsers import StrOutputParser # type: ignore
 import requests # type: ignore
+import os
+
+base_url = os.getenv("OLLAMA_BASE_URL", "http://ollama:11434")
 
 def fetch_product_data(query):
     url = f"http://backend:3000/getPrice?name={query}"
@@ -33,7 +36,7 @@ def generate_summary(user_instruction, products):
     prompt = ChatPromptTemplate.from_template(template)
 
     # Initialize Ollama LLM (local model like Mistral)
-    llm = OllamaLLM(model="mistral")
+    llm = OllamaLLM(model="llama3", base_url=base_url)
 
     # Compose the chain using the pipe operator: prompt -> llm -> output parser
     chain = prompt | llm | StrOutputParser()
