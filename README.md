@@ -128,12 +128,10 @@ The system will:
 
 ## 📸 Demo Preview (Optional)
 
-> Add a short GIF or screenshot of the working UI if available!
+<img width="1435" alt="Screenshot 2025-06-12 at 9 17 30 PM" src="https://github.com/user-attachments/assets/34685183-002b-4bf0-9fad-eca5516b458d" />
 
 ---
 
 ## 📄 License
 
 MIT
-
----
