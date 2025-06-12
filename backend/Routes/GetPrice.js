@@ -3,6 +3,9 @@
 const express = require('express');
 const router = express.Router();
 const puppeteer = require('puppeteer');
+require('dotenv').config();
+
+const isDocker = process.env.IS_DOCKER
 
 router.get('/', async (req, res) => {
     const { name } = req.query;
@@ -10,7 +13,11 @@ router.get('/', async (req, res) => {
         return res.status(400).json({ error: 'Query is required' });
     }
 
-    const browser = await puppeteer.launch({ headless: 'new' });
+    const browser = await puppeteer.launch({
+        headless: 'new',
+        args: isDocker ? ['--no-sandbox', '--disable-setuid-sandbox'] : []
+    });
+
     const page = await browser.newPage();
     let items = [];
 

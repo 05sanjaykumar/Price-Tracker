@@ -7,7 +7,9 @@ services:
     volumes:
       - mongo-data:/data/db
 
+
   backend:
+    platform: linux/amd64  # ✅ Move this here
     build: ./backend
     container_name: backend
     ports:

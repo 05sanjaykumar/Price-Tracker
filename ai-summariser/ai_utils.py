@@ -4,10 +4,20 @@ from langchain_core.output_parsers import StrOutputParser # type: ignore
 import requests # type: ignore
 
 def fetch_product_data(query):
-    url = f"http://localhost:3000/getPrice?name={query}"
+    url = f"http://backend:3000/getPrice?name={query}"
     response = requests.get(url)
-    data = response.json()
+
+    print(f"[DEBUG] Status Code: {response.status_code}")
+    print(f"[DEBUG] Raw Response: {response.text}")
+
+    try:
+        data = response.json()
+    except Exception as e:
+        print(f"[ERROR] JSON Decode Failed: {e}")
+        return []
+
     return data.get("products", [])
+
 
 def generate_summary(user_instruction, products):
     # Format product data into text
