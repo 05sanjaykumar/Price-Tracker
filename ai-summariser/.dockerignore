@@ -1,1 +1,3 @@
 Dockerfile
+.env.local
+.env.example

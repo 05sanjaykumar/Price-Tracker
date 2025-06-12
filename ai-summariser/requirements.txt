@@ -1,6 +1,6 @@
 flask
 requests
 langchain
-ollama
-langchain-ollama
 flask_cors
+langchain-openai
+python-dotenv

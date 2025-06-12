@@ -4,3 +4,4 @@ backend/.env.local
 .DS_Store
 ai-summariser/venv
 ai-summariser/__pycache__
+ai-summariser/.env.local
