@@ -40,10 +40,10 @@ const DashBoard = () => {
         }
     };
     return (
-        <div className='flex min-h-screen w-full bg-gray-900 font-sans'>
+        <div className='flex max-h-screen w-full bg-gray-900 font-sans'>
             <Sidebar />
 
-            <main className='flex-1 p-4 md:p-8 scroll-auto'>
+            <main className='flex-1 p-4 md:p-8 scroll-auto overflow-scroll'>
                 <div className='mx-auto max-w-3xl mt-4'>
                     {/* Search Bar and Suggestions Container */}
                     <div
@@ -69,6 +69,10 @@ const DashBoard = () => {
                             Ask AI
                         </button>
 
+                    </div>
+                    <div className='text-red-500'>
+                        <strong >Note : </strong>
+                        The search has been limited for top 30 results, it will take atleast 2-3 seconds for fetching from the web using bing, and AI will take atleast 2-3 seconds for summarisation, please atleast wait 10-20 seconds for the reponse before trying
                     </div>
 
                     {/* Placeholder for content below the search bar */}

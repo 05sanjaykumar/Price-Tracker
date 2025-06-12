@@ -1,97 +1,139 @@
-# E-commerce Price Tracker
+# 🛒 AI-Powered Price Tracker
 
-## Table of Contents
+A full-stack AI-enhanced product tracker that scrapes real-time listings, summarizes them using LLMs (via Groq), and displays results through a clean React frontend.
 
-- [Project Overview](#project-overview)
-- [Features](#features)
-- [Technologies Used](#technologies-used)
-- [Setup Instructions](#setup-instructions)
-- [Usage](#usage)
-- [Contributing](#contributing)
-- [License](#license)
+Built by a solo developer. Powered by real engineering, DevOps, and AI integrations.
 
 ---
 
+## 🚀 Features
 
-### 📌 **Overview:**
-
-**Easy Buy** is a full-stack AI-powered product aggregator and smart deal recommender. It tracks, analyzes, and summarizes e-commerce product listings from multiple platforms. It goes beyond price tracking — offering intelligent insights, product comparisons, and potential purchase recommendations through AI summarization.
-
-It's designed as a **future-ready tool** that can evolve into a full-blown SaaS product, freelance offering, or B2B plugin.
-
----
-
-## 🚀 **Key Features:**
-
-### 🛍️ Core Functionality:
-
-* **Product Aggregation** from multiple e-commerce platforms
-* **Live Price Tracking** (with price variation tracking if needed)
-* **AI-Powered Product Summarization** (e.g., summarizing 10+ similar listings into a top pick)
-* **Smart Sorting & Filtering** based on price, seller, ratings (future-ready)
-* **Product Detail Pages** with store, price, and direct links
-
-### ⚙️ Developer / SaaS Features:
-
-* Modular API structure for scalability
-* User dashboard with tracked items
-* Well-structured codebase: backend, frontend, and utility layers
-* Can be extended to include web scraping, notifications, and wishlist alerts
+- 🔎 **Real-Time Scraping:** Collects product listings from e-commerce sites and custom Bing search using Puppeteer.
+- 🤖 **AI Summarization:** Uses **Groq-hosted LLMs** (`LLaMA 4 Scout`, `Mixtral`, etc.) to summarize the best results per user query.
+- 🌐 **Full Stack System:**
+  - React + Vite frontend
+  - Flask backend
+  - MongoDB for storing queries
+  - LangChain for model abstraction
+- 🐳 **Containerized:** Fully Dockerized system via `docker-compose`.
 
 ---
 
-## 🧠 **AI Integrations (Planned or Existing):**
+## 🧠 Tech Stack
 
-* Summarizing multiple e-commerce listings to suggest “Best Option”
-* Title clarity cleanup, smart tagging, or spec extraction
-* Could be extended to: **price prediction**, **deal timing alerts**, or **AI chat assistant** for product search
-
----
-
-## 🧰 **Tech Stack**
-
-### 🔧 Backend:
-
-* **Node.js** + **Express.js**
-* **MongoDB** (via Mongoose)
-* RESTful API Architecture
-* JWT Authentication
-* Modular routes and controllers
-
-### 🌐 Frontend:
-
-* **React.js** + **Vite**
-* **Tailwind CSS** for clean UI
-* Responsive, reusable UI components
-* Dashboard, login, home, item details pages
-
-### ☁️ DevOps / Deployment:
-
-* Cloud Deployment (e.g., Render, Railway, or AWS)
-* Git-based CI/CD setup
-* Vercel / Netlify for frontend (optionally)
-
-### 🧠 AI Tools:
-
-* OpenAI or local LLMs (for summarization / recommendation)
-* Utility layer to preprocess listing data before summarization
+| Layer          | Technology                          |
+|----------------|-------------------------------------|
+| **Frontend**   | React, Vite, Axios                  |
+| **Backend**    | Flask, LangChain, Python 3.12       |
+| **AI Models**  | Groq API (`LLaMA`, `Mixtral`)       |
+| **Scraping**   | Bing Search API, Puppeteer (Node.js)|
+| **Database**   | MongoDB                             |
+| **DevOps**     | Docker, Docker Compose              |
 
 ---
 
+## 🧰 Setup Instructions
 
-## Setup Instructions
-
-To get started with the project, follow these steps:
-
-### Prerequisites
-
-Make sure you have the following installed:
-- Node.js (>= 14.x)
-- npm (Node Package Manager)
-- MongoDB (or use MongoDB Atlas)
-
-### Clone the Repository
+### 1. Clone the Repo
 
 ```bash
 git clone https://github.com/05sanjaykumar/Price-Tracker
-cd ecommerce-price-tracker
+cd price-tracker-ai
+````
+
+### 2. Create `.env.local`
+
+In the `ai-summariser/` folder:
+
+```env
+GROQ_API_KEY=your_groq_api_key
+GROQ_API_BASE=https://api.groq.com/openai/v1
+MODEL_NAME=meta-llama/llama-4-scout-17b-16e-instruct
+```
+
+> You can optionally remove Ollama support by disabling that service in `docker-compose.yml`.
+
+### 3. Run with Docker
+
+```bash
+docker-compose up --build
+```
+
+This spins up:
+
+* MongoDB
+* Backend (Flask)
+* AI summariser service
+* Frontend (React)
+
+---
+
+### 🧪 How to Use
+
+Visit the frontend:
+
+```bash
+http://localhost:5173
+```
+
+You’ll find a simple UI where you can enter a natural language query like:
+
+> 💬 **"Best gaming laptops under ₹1 lakh"**
+
+The system will:
+
+1. Scrape the latest product listings
+2. Summarize the best options using LLMs (Groq or local)
+3. Return a clear, ranked summary to the user interface
+
+---
+
+## 🧪 Sample Prompt Use Cases
+
+* "Best phones under ₹30k"
+* "Top smart TVs under ₹50,000"
+* "Most affordable noise-canceling headphones"
+
+---
+
+## 💡 Learnings & Highlights
+
+* Full-stack Docker orchestration
+* LangChain LLM orchestration (prompt → AI → result)
+* Using AI API key: cloud-hosted Groq API
+* Custom scraping with Bing + Puppeteer
+* Real-time summarization with semantic filtering
+* Truly scalable backend architecture
+
+---
+
+## 👨‍💻 Built By
+
+**Sanjay Kumar**
+💡 Self-taught developer | Polyglot Dev | Indie Hacker
+🛠️ Built from scratch at 20 to show my real-world projects skills
+🌍 [GitHub](https://github.com/yourusername) • [X](#) (https://x.com/sanjaykuma49595)
+
+---
+
+## 🧠 Future Improvements
+
+* ✅ Frontend AI summary display (done)
+* ⏳ Add filtering/sorting by price/category
+* 💾 Optional user login & saved queries
+* 📱 Mobile responsive layout
+* ⚙️ Cloud deployment (e.g., Vercel + Render/Fly.io)
+
+---
+
+## 📸 Demo Preview (Optional)
+
+> Add a short GIF or screenshot of the working UI if available!
+
+---
+
+## 📄 License
+
+MIT
+
+---
