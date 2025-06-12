@@ -11,3 +11,11 @@ export const signUpUser = (data: { username: string; email: string; password: st
 
 export const loginUser = (data: { email: string; password: string }) =>
   API.post('/login', data);
+
+const FlaskAPI = axios.create({
+  baseURL: 'http://localhost:5050', // Flask server base URL
+  headers: { 'Content-Type': 'application/json' },
+});
+
+export const askAI = (query: string) =>
+  FlaskAPI.post('/askAI', { query });
