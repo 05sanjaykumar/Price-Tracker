@@ -1,10 +1,11 @@
 from langchain_core.prompts import ChatPromptTemplate # type: ignore
-from langchain_ollama import OllamaLLM # type: ignore
 from langchain_core.output_parsers import StrOutputParser # type: ignore
+from langchain_openai import ChatOpenAI #type: ignore
 import requests # type: ignore
 import os
+from dotenv import load_dotenv #type: ignore
+load_dotenv(dotenv_path=".env.local")
 
-base_url = os.getenv("OLLAMA_BASE_URL", "http://ollama:11434")
 
 def fetch_product_data(query):
     url = f"http://backend:3000/getPrice?name={query}"
@@ -36,7 +37,12 @@ def generate_summary(user_instruction, products):
     prompt = ChatPromptTemplate.from_template(template)
 
     # Initialize Ollama LLM (local model like Mistral)
-    llm = OllamaLLM(model="gemma:2b", base_url=base_url)
+    llm = ChatOpenAI(
+        base_url=os.getenv("GROQ_API_BASE"),
+        api_key=os.getenv("GROQ_API_KEY"),
+        model=os.getenv("GROQ_MODEL"),
+        temperature=0.7
+    )
 
     # Compose the chain using the pipe operator: prompt -> llm -> output parser
     chain = prompt | llm | StrOutputParser()
