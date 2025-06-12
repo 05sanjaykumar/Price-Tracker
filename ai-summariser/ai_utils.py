@@ -36,7 +36,7 @@ def generate_summary(user_instruction, products):
     prompt = ChatPromptTemplate.from_template(template)
 
     # Initialize Ollama LLM (local model like Mistral)
-    llm = OllamaLLM(model="llama3", base_url=base_url)
+    llm = OllamaLLM(model="gemma:2b", base_url=base_url)
 
     # Compose the chain using the pipe operator: prompt -> llm -> output parser
     chain = prompt | llm | StrOutputParser()
