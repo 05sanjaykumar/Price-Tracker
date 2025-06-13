@@ -41,11 +41,13 @@ git clone https://github.com/05sanjaykumar/Price-Tracker
 cd price-tracker-ai
 ````
 
-### 2. Create `.env.local`
+### 2. Create `.env.local` you have given an `.env.example`, you just just replace that in the root folder
 
-In the `ai-summariser/` folder:
+In the `./ or root` folder:
 
 ```env
+MONGO_URI=mongodb://localhost:27017/mydbname
+JWT_SECRET=supersecretkey
 GROQ_API_KEY=your_groq_api_key
 GROQ_API_BASE=https://api.groq.com/openai/v1
 MODEL_NAME=meta-llama/llama-4-scout-17b-16e-instruct

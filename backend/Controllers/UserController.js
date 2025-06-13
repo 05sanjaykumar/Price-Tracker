@@ -5,7 +5,9 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { signupSchema, loginSchema } = require('../Validations/UserValidation');
 const dotenv = require('dotenv');
-dotenv.config({ path: '.env.local' });
+const path = require('path');
+dotenv.config({ path: path.join(__dirname, '../../.env.local') });
+
 
 
 const generateToken = (userId)=>{

@@ -1,7 +1,9 @@
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 
-dotenv.config({ path: '.env.local' });
+const path = require('path');
+dotenv.config({ path: path.join(__dirname, '../../.env.local') });
+
 
 const connectDB = async () => {
     try {

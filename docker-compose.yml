@@ -27,7 +27,7 @@ services:
     depends_on:
       - mongo
     env_file:
-      - ./ai-summariser/.env.local
+      - ./.env.local
 
   frontend:
     build: ./frontend

@@ -4,7 +4,9 @@ from langchain_openai import ChatOpenAI #type: ignore
 import requests # type: ignore
 import os
 from dotenv import load_dotenv #type: ignore
-load_dotenv(dotenv_path=".env.local")
+
+dotenv_path = os.path.join(os.path.dirname(__file__), "..", ".env.local")
+load_dotenv(dotenv_path)
 
 
 def fetch_product_data(query):
