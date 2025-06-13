@@ -16,8 +16,8 @@ services:
       - "3000:3000"
     depends_on:
       - mongo
-    environment:
-      - MONGO_URI=mongodb://mongo:27017/price-tracker
+    env_file:
+      - ./.env.local
 
   ai-summariser:
     build: ./ai-summariser

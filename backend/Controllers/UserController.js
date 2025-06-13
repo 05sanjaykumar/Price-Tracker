@@ -4,9 +4,16 @@ const User = require('../Schemas/UserSchema')
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const { signupSchema, loginSchema } = require('../Validations/UserValidation');
-const dotenv = require('dotenv');
-const path = require('path');
-dotenv.config({ path: path.join(__dirname, '../../.env.local') });
+
+
+
+const isDocker = process.env.IS_DOCKER === 'true';
+
+if (!isDocker) {
+  const dotenv = require('dotenv');
+  const path = require('path');
+  dotenv.config({ path: path.join(__dirname, '../../.env.local') });
+}
 
 
 

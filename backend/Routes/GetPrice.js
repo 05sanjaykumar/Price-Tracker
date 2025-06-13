@@ -3,13 +3,14 @@
 const express = require('express');
 const router = express.Router();
 const puppeteer = require('puppeteer');
-const dotenv = require('dotenv');
 
-const path = require('path');
-dotenv.config({ path: path.join(__dirname, '../../.env.local') });
+const isDocker = process.env.IS_DOCKER === 'true';
 
-
-const isDocker = process.env.IS_DOCKER
+if (!isDocker) {
+  const dotenv = require('dotenv');
+  const path = require('path');
+  dotenv.config({ path: path.join(__dirname, '../../.env.local') });
+}
 
 router.get('/', async (req, res) => {
     const { name } = req.query;

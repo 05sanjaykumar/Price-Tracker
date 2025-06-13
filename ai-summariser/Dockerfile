@@ -3,6 +3,8 @@ FROM python:3.12-slim
 
 WORKDIR /app
 
+ENV IS_DOCKER=true
+
 # Install system dependencies (like curl, wget, netcat for debugging)
 RUN apt-get update && apt-get install -y \
     curl \
