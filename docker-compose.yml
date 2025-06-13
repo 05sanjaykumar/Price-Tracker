@@ -37,9 +37,8 @@ services:
     depends_on:
       - backend
       - ai-summariser
-    environment:
-      - VITE_API_URL=http://localhost:3000
-      - VITE_AI_URL=http://localhost:5000
+    env_file:
+      - ./.env.local
 
 volumes:
   mongo-data:

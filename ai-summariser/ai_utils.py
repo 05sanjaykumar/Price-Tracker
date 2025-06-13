@@ -11,9 +11,12 @@ if os.getenv("IS_DOCKER") != "true":
     dotenv_path = os.path.join(os.path.dirname(__file__), "..", ".env.local")
     load_dotenv(dotenv_path)
 
+# Choose API host based on Docker environment
+BACKEND_HOST = "backend" if os.getenv("IS_DOCKER") == "true" else "localhost"
+BACKEND_URL = f"http://{BACKEND_HOST}:3000"
 
 def fetch_product_data(query):
-    url = f"http://backend:3000/getPrice?name={query}"
+    url = f"{BACKEND_URL}/getPrice?name={query}"
     response = requests.get(url)
 
     print(f"[DEBUG] Status Code: {response.status_code}")

@@ -6,3 +6,4 @@ ai-summariser/venv
 ai-summariser/__pycache__
 ai-summariser/.env.local
 .env.local
+frontend/.env

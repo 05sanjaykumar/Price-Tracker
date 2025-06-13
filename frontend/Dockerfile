@@ -3,6 +3,10 @@ FROM node:22-alpine
 
 WORKDIR /app
 
+ENV IS_DOCKER=true
+
+COPY .env . 
+
 COPY package*.json ./
 RUN npm install
 
