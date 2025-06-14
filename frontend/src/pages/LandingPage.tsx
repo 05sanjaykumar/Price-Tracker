@@ -124,14 +124,16 @@ const EasyBuyLanding = () => {
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button className="bg-gradient-to-r from-purple-500 to-cyan-500 px-8 py-4 rounded-2xl text-lg font-semibold hover:from-purple-600 hover:to-cyan-600 transition-all transform hover:scale-105 flex items-center space-x-2">
+              <button onClick={() => navigate('/auth')} className="bg-gradient-to-r from-purple-500 to-cyan-500 px-8 py-4 rounded-2xl text-lg font-semibold hover:from-purple-600 hover:to-cyan-600 transition-all transform hover:scale-105 flex items-center space-x-2">
                 <span>Start Tracking</span>
                 <ChevronRight className="w-5 h-5" />
               </button>
-              <button className="border border-white/30 px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-white/10 transition-all transform hover:scale-105 flex items-center space-x-2">
-                <Github className="w-5 h-5" />
-                <span><a href='https://github.com/05sanjaykumar/Price-Tracker'>View Code</a></span>
-              </button>
+              <a href="https://github.com/05sanjaykumar/Price-Tracker">
+                <button className="border border-white/30 px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-white/10 transition-all transform hover:scale-105 flex items-center space-x-2">
+                  <Github className="w-5 h-5" />
+                  <span>View Code</span>
+                </button>
+              </a>
             </div>
           </div>
         </section>
@@ -254,9 +256,11 @@ const EasyBuyLanding = () => {
               onClick={() => navigate('/auth')}>
                 Get Started Now
               </button>
-              <button className="border border-white/30 px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-white/10 transition-all transform hover:scale-105">
-                View Documentation
-              </button>
+              <a href="https://github.com/05sanjaykumar/Price-Tracker?tab=readme-ov-file#readme">
+                <button  className="border border-white/30 px-8 py-4 rounded-2xl text-lg font-semibold hover:bg-white/10 transition-all transform hover:scale-105">
+                  View Documentation
+                </button>
+              </a>
             </div>
           </div>
         </section>

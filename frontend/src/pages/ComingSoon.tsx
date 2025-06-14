@@ -1,8 +1,5 @@
 import React from "react";
 import { Card, CardContent } from "@/components/ui/card";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Mail } from "lucide-react";
 import { motion } from "framer-motion";
 
 const ComingSoon: React.FC = () => {
@@ -21,13 +18,6 @@ const ComingSoon: React.FC = () => {
             <p className="text-gray-600 mb-6">
               We’re working hard to bring something amazing. Stay in the loop!
             </p>
-            <div className="flex items-center gap-2 mb-4">
-              <Mail className="text-indigo-500" />
-              <Input type="email" placeholder="Enter your email" className="flex-1" />
-            </div>
-            <Button className="w-full bg-indigo-600 hover:bg-indigo-700">
-              Notify Me
-            </Button>
           </CardContent>
         </Card>
       </motion.div>
