@@ -14,13 +14,13 @@ const DashBoard = () => {
 
     const navigate = useNavigate()
 
-    useEffect(() => {
-        const token = localStorage.getItem('token')
-        if(!token){
-            alert('signin or login first')
-          navigate('/auth');
-        }
-    }, [])
+    // useEffect(() => {
+    //     const token = localStorage.getItem('token')
+    //     if(!token){
+    //         alert('signin or login first')
+    //       navigate('/auth');
+    //     }
+    // }, [])
 
     const handleAskAI = async () => {
         if (!searchTerm.trim()) return;
