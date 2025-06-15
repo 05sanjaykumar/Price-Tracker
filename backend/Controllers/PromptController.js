@@ -21,4 +21,16 @@ const savePrompt = async (req, res) => {
 };
 
 
-module.exports = {savePrompt}
+const getPromptsByUser = async (req, res) => {
+  try {
+    const { userId } = req.params;
+    const prompts = await UserPrompt.find({ userId }).sort({ timestamp: -1 });
+    res.status(200).json(prompts);
+  } catch (error) {
+    console.error("Error fetching prompts:", error);
+    res.status(500).json({ error: "Internal Server Error" });
+  }
+};
+
+
+module.exports = {savePrompt,getPromptsByUser}
