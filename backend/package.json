@@ -1,9 +1,9 @@
 {
-  "name": "__backend__",
+  "name": "backend",
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -19,5 +19,9 @@
     "mongoose": "^8.15.1",
     "puppeteer": "^24.10.0",
     "zod": "^3.25.53"
+  },
+  "devDependencies": {
+    "jest": "^30.0.0",
+    "supertest": "^7.1.1"
   }
 }
