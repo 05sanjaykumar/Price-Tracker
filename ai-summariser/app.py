@@ -6,7 +6,7 @@ from flask_cors import CORS # type: ignore
 app = Flask(__name__)
 CORS(app)  # Enable CORS for all domains on all routes
 
-@app.route("/askAI", methods=["POST"])
+@app.route("/api/askAI", methods=["POST"])
 def ask_ai():
     data = request.get_json()
     query = data.get("query", "")

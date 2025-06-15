@@ -2,7 +2,7 @@
 import axios from 'axios';
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api',
+  baseURL: import.meta.env.VITE_API_URL || 'http://localhost:3000/api/auth',
   headers: { 'Content-Type': 'application/json' },
 });
 
@@ -18,4 +18,4 @@ const FlaskAPI = axios.create({
 });
 
 export const askAI = (query: string) =>
-  FlaskAPI.post('/askAI', { query });
+  FlaskAPI.post('/api/askAI', { query });

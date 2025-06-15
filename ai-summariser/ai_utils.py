@@ -16,7 +16,7 @@ BACKEND_HOST = "backend" if os.getenv("IS_DOCKER") == "true" else "localhost"
 BACKEND_URL = f"http://{BACKEND_HOST}:3000"
 
 def fetch_product_data(query):
-    url = f"{BACKEND_URL}/getPrice?name={query}"
+    url = f"{BACKEND_URL}/api/getPrice?name={query}"
     response = requests.get(url)
 
     print(f"[DEBUG] Status Code: {response.status_code}")

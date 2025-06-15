@@ -11,9 +11,9 @@ app.use(cors())
 app.use(express.json());
 
 
-app.use('/api', userRoutes);
-app.use('/getPrice',getPrice)
-app.use('/savePrompt',savePrompt)
+app.use('/api/auth', userRoutes);
+app.use('/api/getPrice',getPrice)
+app.use('/api/savePrompt',savePrompt)
 
 const PORT = 3000
 
