@@ -25,7 +25,7 @@ const Dashboard = () => {
   if (!userId) return null;
 
   return (
-    <div className="flex h-screen w-full bg-gray-900 text-white">
+    <div className="flex h-screen w-full bg-[rgb(33,33,33)] text-white">
       <Sidebar userId={userId} onPromptSelect={setSelectedPrompt} />
 
       <main className="flex-1 overflow-y-auto p-6">
