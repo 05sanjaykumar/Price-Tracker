@@ -15,6 +15,12 @@ export const loginUser = (data: { email: string; password: string }) =>
 export const getUserPrompts = (userId: string) =>
   API.get(`/savePrompt/${userId}`);
 
+export const saveUserPrompt = (data: {
+  userId: string;
+  prompt: string;
+  response: string;
+}) => API.post('/savePrompt', data);
+
 
 const FlaskAPI = axios.create({
   baseURL: import.meta.env.VITE_AI_URL || 'http://localhost:5050',

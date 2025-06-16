@@ -4,6 +4,9 @@ import { Input } from "@/components/ui/input";
 import { useNavigate } from "react-router-dom";
 import Sidebar from "../components/Sidebar";
 import { askAI } from '@/services/api';
+import {  saveUserPrompt } from '@/services/api';
+import { decodeToken } from '@/utils/decodeToken';
+
 
 
 const DashBoard = () => {
@@ -11,6 +14,7 @@ const DashBoard = () => {
     const [isFocused, setIsFocused] = useState(false);
     const [aiResponse, setAiResponse] = useState("");
     const [loading, setLoading] = useState(false);
+    const [userId, setUserId] = useState<string | null>(null);
 
     const navigate = useNavigate()
 
@@ -19,7 +23,10 @@ const DashBoard = () => {
         if(!token){
             alert('signin or login first')
           navigate('/auth');
-        }
+        } else {
+        const decoded = decodeToken(token);
+        setUserId(decoded?.userId); // Or decoded?._id, depending on your payload
+    }
     }, [])
 
     const handleAskAI = async () => {
@@ -80,7 +87,33 @@ const DashBoard = () => {
                         {loading ? (
                             <p className="text-violet-400">Thinking...</p>
                         ) : (
-                            <p>{aiResponse || "Search results or tracked items will appear here."}</p>
+                            <div>
+                                {aiResponse && (
+                                <div className="mt-4 flex items-center gap-4 flex-col">
+                                    <p className="text-green-400 flex-1">{aiResponse}</p>
+                                    <button
+                                    className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700"
+                                    onClick={async () => {
+                                        if (!userId) return;
+                                        try {
+                                            console.log('button clicked')
+                                        await saveUserPrompt({
+                                            userId,
+                                            prompt: searchTerm,
+                                            response: aiResponse,
+                                        });
+                                        alert("Prompt saved successfully!");
+                                        } catch (err) {
+                                        console.error("Save error:", err);
+                                        alert("Failed to save prompt.");
+                                        }
+                                    }}
+                                    >
+                                    📌 Save
+                                    </button>
+                                </div>
+                                )}
+                            </div>
                         )}
                     </div>
                 </div>
