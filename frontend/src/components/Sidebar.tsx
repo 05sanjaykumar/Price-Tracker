@@ -80,15 +80,15 @@ const Sidebar = ({ userId, onPromptSelect }: Props) => {
                 {prompts.length === 0 ? (
                   <li className="text-gray-600 italic">No prompts saved.</li>
                 ) : (
-                  prompts.map((item, idx) => (
-                    <li
-                      key={idx}
-                      className="p-2 rounded hover:bg-gray-800 text-ellipsis whitespace-nowrap overflow-hidden"
-                      title={item.prompt}
+                  prompts.map((prompt, idx) => (
+                    <button
+                        key={idx}
+                        onClick={() => onPromptSelect({ prompt: prompt.prompt, response: prompt.response })}
+                        className="block w-full text-left p-2 hover:bg-gray-700 rounded text-sm"
                     >
-                      {item.prompt.length > 40 ? item.prompt.slice(0, 40) + '…' : item.prompt}
-                    </li>
-                  ))
+                        {prompt.prompt.slice(0, 30)}...
+                    </button>
+                    ))
                 )}
               </ul>
             )}
