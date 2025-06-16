@@ -7,9 +7,10 @@ import { getUserPrompts } from "@/services/api";
 
 type Props = {
   userId: string;
+  onPromptSelect: (data: { prompt: string; response: string }) => void;
 };
 
-const Sidebar = ({ userId }: Props) => {
+const Sidebar = ({ userId, onPromptSelect }: Props) => {
   const navigate = useNavigate();
   const [prompts, setPrompts] = useState<{ prompt: string; response: string }[]>([]);
   const [showHistory, setShowHistory] = useState(false);

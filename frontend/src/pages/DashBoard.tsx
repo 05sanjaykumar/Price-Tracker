@@ -1,61 +1,46 @@
-import { useState, useEffect } from 'react';
+// src/components/Dashboard.tsx
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import Sidebar from "../components/Sidebar";
-import { decodeToken } from '@/utils/decodeToken';
-import InputResponse from '@/components/InputResponse';
-import History from '@/components/History';
+import { decodeToken } from "@/utils/decodeToken";
+import Sidebar from "@/components/Sidebar";
+import InputResponse from "@/components/InputResponse";
+import HistoryView from "@/components/HistoryView";
 
-const DashBoard = () => {
+const Dashboard = () => {
   const [userId, setUserId] = useState<string | null>(null);
-  const [view, setView] = useState<'input' | 'history'>('input');
-
+  const [selectedPrompt, setSelectedPrompt] = useState<{ prompt: string; response: string } | null>(null);
   const navigate = useNavigate();
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
+    const token = localStorage.getItem("token");
     if (!token) {
-      alert('signin or login first');
-      navigate('/auth');
+      alert("Login required");
+      navigate("/auth");
     } else {
       const decoded = decodeToken(token);
       setUserId(decoded?.userId);
     }
   }, []);
 
-  return (
-    <div className='flex max-h-screen w-full bg-gray-900 font-sans'>
-      {userId && <Sidebar userId={userId} />}
-      <main className='flex-1 p-4 md:p-8 scroll-auto overflow-scroll'>
-        <div className='flex justify-between items-center'>
-          <button
-            onClick={() => setView('input')}
-            className={`px-4 py-2 rounded-lg mr-2 ${
-              view === 'input' ? 'bg-violet-600 text-white' : 'bg-gray-700 text-gray-200'
-            }`}
-          >
-            Ask AI
-          </button>
-          <button
-            onClick={() => setView('history')}
-            className={`px-4 py-2 rounded-lg ${
-              view === 'history' ? 'bg-violet-600 text-white' : 'bg-gray-700 text-gray-200'
-            }`}
-          >
-            History
-          </button>
-        </div>
+  if (!userId) return null;
 
-        {userId ? (
-          <>
-            {view === 'input' && <InputResponse userId={userId} />}
-            {view === 'history' && <History userId={userId} />}
-          </>
+  return (
+    <div className="flex h-screen w-full bg-gray-900 text-white">
+      <Sidebar userId={userId} onPromptSelect={setSelectedPrompt} />
+
+      <main className="flex-1 overflow-y-auto p-6">
+        {selectedPrompt ? (
+          <HistoryView
+            prompt={selectedPrompt.prompt}
+            response={selectedPrompt.response}
+            onQuit={() => setSelectedPrompt(null)}
+          />
         ) : (
-          <p className="text-white mt-4">Loading...</p>
+          <InputResponse userId={userId} />
         )}
       </main>
     </div>
   );
 };
 
-export default DashBoard; 
+export default Dashboard;
