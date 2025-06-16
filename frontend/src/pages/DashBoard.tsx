@@ -24,8 +24,7 @@ const DashBoard = () => {
 
   return (
     <div className='flex max-h-screen w-full bg-gray-900 font-sans'>
-      <Sidebar />
-
+      {userId && <Sidebar userId={userId} />}
       <main className='flex-1 p-4 md:p-8 scroll-auto overflow-scroll'>
         <div className='flex justify-between items-center'>
           <button
