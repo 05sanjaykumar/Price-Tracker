@@ -1,46 +1,43 @@
 # backend/Dockerfile
-FROM node:22-bullseye
+FROM --platform=linux/amd64 node:22-alpine
 
-# Install system dependencies needed for Chromium
-RUN apt-get update && apt-get install -y \
-    wget \
+# Install system dependencies for Chromium with proper architecture support
+RUN apk add --no-cache \
+    chromium \
+    nss \
+    freetype \
+    freetype-dev \
+    harfbuzz \
     ca-certificates \
-    fonts-liberation \
-    libappindicator3-1 \
-    libasound2 \
-    libatk-bridge2.0-0 \
-    libatk1.0-0 \
-    libcups2 \
-    libdbus-1-3 \
-    libgbm1 \
-    libgtk-3-0 \
-    libnspr4 \
-    libnss3 \
-    libx11-xcb1 \
-    libxcomposite1 \
-    libxdamage1 \
-    libxrandr2 \
-    xdg-utils \
-    --no-install-recommends \
- && rm -rf /var/lib/apt/lists/*
+    ttf-freefont \
+    udev \
+    ttf-opensans
 
 # Set working directory
 WORKDIR /app
 
-# Copy only package files for layer caching
+# Copy package files
 COPY package*.json ./
 
-# Set Puppeteer env to install correct Chromium
-ENV PUPPETEER_PRODUCT=chrome \
-    PUPPETEER_SKIP_DOWNLOAD=false \
-    IS_DOCKER=true
+# Configure Puppeteer for Alpine Linux
+ENV PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
+    PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
+    CHROME_BIN=/usr/bin/chromium-browser \
+    CHROME_PATH=/usr/bin/chromium-browser
 
-# Install deps + Chromium
-RUN npm install && \
-    npx puppeteer browsers install chrome
+# Install Node.js dependencies
+RUN npm install
 
-# Copy rest of the app
+# Copy application code
 COPY . .
+
+# Create a non-root user for security
+RUN addgroup -g 1001 -S nodejs && \
+    adduser -S nextjs -u 1001
+
+# Change ownership of the app directory
+RUN chown -R nextjs:nodejs /app
+USER nextjs
 
 # Expose port
 EXPOSE 3000

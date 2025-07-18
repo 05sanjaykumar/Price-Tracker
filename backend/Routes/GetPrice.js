@@ -2,7 +2,10 @@
 
 const express = require('express');
 const router = express.Router();
-const puppeteer = require('puppeteer');
+const puppeteer = require('puppeteer-extra');
+const StealthPlugin = require('puppeteer-extra-plugin-stealth');
+puppeteer.use(StealthPlugin());
+
 
 const isDocker = process.env.IS_DOCKER === 'true';
 
@@ -36,7 +39,7 @@ router.get('/', async (req, res) => {
         await page.goto(bingUrl, { waitUntil: 'networkidle2', timeout: 0 });
 
         await new Promise(resolve => setTimeout(resolve, 3000));
-        // await page.screenshot({ path: 'bing_shopping.png', fullPage: true });
+        await page.screenshot({ path: 'bing_shopping.png', fullPage: true });
 
         await page.waitForSelector('ol.br-itemsCnt');
         // const html = await page.content();

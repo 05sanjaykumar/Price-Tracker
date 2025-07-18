@@ -18,6 +18,8 @@
     "jwt-decode": "^4.0.0",
     "mongoose": "^8.15.1",
     "puppeteer": "^24.10.0",
+    "puppeteer-extra": "^3.3.6",
+    "puppeteer-extra-plugin-stealth": "^2.11.2",
     "zod": "^3.25.53"
   },
   "devDependencies": {
