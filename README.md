@@ -6,6 +6,12 @@ Built by a solo developer. Powered by real engineering, DevOps, and AI integrati
 
 ---
 
+## Video Demo
+
+https://github.com/user-attachments/assets/c7cc3051-e21f-4055-a5d0-ac0df2076fa8
+
+---
+
 ## 🚀 Features
 
 - 🔎 **Real-Time Scraping:** Collects product listings from e-commerce sites and custom Bing search using Puppeteer.
